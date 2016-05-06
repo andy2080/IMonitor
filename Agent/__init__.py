@@ -1,8 +1,16 @@
 # -*- coding:utf-8 -*-
 from ProcDataClass import ProcData
 from LogDataClass import LogData
+from ProcessData import ProcessData
+import globalValue
+
+import time
+import Queue
+import threading
 if __name__ == '__main__':
-    proc_data = ProcData()
-    log_data = LogData('/var/log/apache2/access.log')
-    print log_data.getLogLine()
-    print log_data.isSetAppointStr('Firefox')
+    process = ProcessData(globalValue.QUEUE)
+    process.start()
+    # proc = ProcData()
+    # print proc.getStat()
+    # print proc.getNetIO()
+    # print ProcData.__dict__

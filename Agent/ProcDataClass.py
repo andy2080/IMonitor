@@ -35,7 +35,7 @@ class ProcData(Base):
                             cpu_num += 1
                             cpu_info['cpu'+str(cpu_num)] = OrderedDict()
         except Exception as e:
-            exit(e)
+            return False
         # 提取CPU model_name
         model_name = []
         for numKey in cpu_info.keys():
@@ -47,23 +47,23 @@ class ProcData(Base):
     def getLoadAvg(self):
         '''
         获取服务器平均负载
+        1 5 15
         :return:
         '''
         try:
             with open(self.proc_dir + 'loadavg') as fp:
                 load_avg = fp.read()
         except Exception as e:
-            exit(e)
+            return False
         return load_avg.split('\n')[0].split(' ')
 
     def getMemInfo(self):
         '''
         获取服务器内存使用情况
-        :return:
+        :return: 服务器内存使用情况
         '''
-        mem_info_tmp = []
-        mem_info = OrderedDict()
-        mem = OrderedDict()
+        mem_info = {}
+        mem = {}
         try:
             with open(self.proc_dir + 'meminfo') as fp:
                 for line in fp:
@@ -74,13 +74,25 @@ class ProcData(Base):
                         else:
                             mem[tmp[0].strip()] = ''
         except Exception as e:
-            exit(e)
+            return False
         mem_info['MemTotal'] = mem['MemTotal']
         mem_info['MemFree'] = mem['MemFree']
         mem_info['Buffers'] = mem['Buffers']
         mem_info['Cached'] = mem['Cached']
         mem_info['﻿SwapCached'] = mem['SwapCached']
+        mem_info['use'] = str(int(mem['MemTotal'].split(' ')[0]) - int(mem['MemFree'].split(' ')[0])) + ' kB'
         return mem_info
+
+    def getMemUsage(self):
+        '''
+        获取内存使用率
+        :return: 内存使用率
+        '''
+        mem_info = self.getMemInfo()
+        if mem_info:
+            useage = float(mem_info['use'].split(' ')[0]) / float(mem_info['MemTotal'].split(' ')[0])
+            return useage
+        return False
 
     def getNetIO(self):
         '''
@@ -94,7 +106,7 @@ class ProcData(Base):
                     if 'eth0' in line:
                         data = line.split(' ')
         except Exception as e:
-            exit(e)
+            return False
         # 去除列表中空元素
         while '' in data:
             data.remove('')
@@ -103,7 +115,7 @@ class ProcData(Base):
         in_net = round(float(data[1])/1024/1024, 3)
         out_net = round(float(data[9])/1024/1024, 3)
 
-        net_data = OrderedDict()
+        net_data = {}
         net_data['in_net'] = in_net
         net_data['out_net'] = out_net
         return net_data
@@ -117,7 +129,7 @@ class ProcData(Base):
             with open(self.proc_dir + 'version') as fp:
                 version = fp.read()
         except Exception as e:
-            exit(e)
+            return False
 
         return version
 
@@ -126,12 +138,11 @@ class ProcData(Base):
         获取系统运行时间及空闲时间
         :return:
         '''
-        date = ['小时', '天']
         try:
             with open(self.proc_dir + 'uptime') as fp:
                 uptime = fp.read()
         except Exception as e:
-            exit(e)
+            return False
 
         run_time = uptime.split(' ')[0].strip()
         free_time = uptime.split(' ')[1].strip()
@@ -162,10 +173,10 @@ class ProcData(Base):
             with open(self.proc_dir + 'stat') as fp:
                 data = fp.read().split('\n')
         except Exception as e:
-            exit(e)
+            return False
 
-        cpuNum = 0
-        cpuData = OrderedDict()
+        cpuData = {}
+        idle = {}
         for line in data:
             if 'cpu' in line:
                 tmp = line.split(' ')
@@ -173,10 +184,12 @@ class ProcData(Base):
                 while '' in tmp:
                     tmp.remove('')
                 cpuData[tmp[0]] = tmp[1:]
+                idle[tmp[0]] = tmp[4]
         cpuTotalTime = {}
         for key in cpuData.keys():
             total = 0
             for num in cpuData[key]:
                 total += int(num)
             cpuTotalTime[key] = total
-        print cpuTotalTime
+        data = {'idle':idle, 'total':cpuTotalTime}
+        return data
