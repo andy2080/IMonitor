@@ -19,14 +19,15 @@ module.exports = function (options) {
             'ui-bootstrap',
             'echarts',
             'jquery',
-            'bootstrap'
+            'bootstrap',
+            'iconfont'
         ]
     };
 
     var output = {
         path: options.dir,
         filename: 'script/[name].js',
-        chunkFilename: 'script/[name].js'
+        chunkFilename: 'script/[name].js',
     };
 
     if (options.sourcemaps) {
@@ -39,7 +40,8 @@ module.exports = function (options) {
         'oc.lazyLoad': path.resolve(VENDOR_PATH, 'oclazyload', 'ocLazyLoad.js'),
         'ui-bootstrap': path.resolve(VENDOR_PATH, 'ui-bootstrap', 'ui-bootstrap-tpls.js'),
         'jquery': path.resolve(VENDOR_PATH, 'jquery', 'jquery.js'),
-        'bootstrap': path.resolve(VENDOR_PATH, 'bootstrap', 'css', 'bootstrap.css'),
+        'bootstrap': path.resolve(VENDOR_PATH, 'bootstrap', 'bootstrap.css'),
+        'iconfont': path.resolve(VENDOR_PATH, 'iconfont', 'iconfont.css'),
 
         /* ======== echarts ======== */
         'echarts': path.resolve(VENDOR_PATH, 'echarts', 'echarts.all.js'),
@@ -94,24 +96,8 @@ module.exports = function (options) {
             loader: 'file?name=./images/[name].[hash].[ext]'
         },
         {
-            test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-            loader: 'url?limit=10000&minetype=application/font-woff&name=./fonts/[name].[hash].[ext]'
-        },
-        {
-            test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-            loader: 'url?limit=10000&minetype=application/font-woff2&name=./fonts/[name].[hash].[ext]'
-        },
-        {
-            test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-            loader: 'url?limit=10000&minetype=application/octet-stream&name=./fonts/[name].[hash].[ext]'
-        },
-        {
-            test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-            loader: 'file?name=./fonts/[name].[hash].[ext]'
-        },
-        {
-            test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-            loader: 'url?limit=10000&minetype=image/svg+xml&name=./fonts/[name].[hash].[ext]'
+            test: /\.(woff|woff2|ttf|eot|svg)(\?t=\d+)?$/,
+            loader: 'file?limit=10000&name=fonts/[name].[hash].[ext]'
         }
     ];
 
@@ -120,7 +106,7 @@ module.exports = function (options) {
             $: 'jquery',
             jQuery: 'jquery'
         }),
-        new ExtractTextPlugin("style/[name].css"),
+        new ExtractTextPlugin("[name].css"),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: path.resolve(SOURCE_PATH, 'index.html'),
