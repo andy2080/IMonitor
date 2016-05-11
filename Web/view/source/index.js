@@ -1,19 +1,22 @@
 import CommonModule from './common/index';
-import CpuRouter from './cpu/router';
-import RamRouter from './ram/router';
-import TrafficRouter from './ram/router';
 
-let ngModules = [
+import HomeRouter from './home/router';
+import HelpRouter from './help/router';
+import InfoRouter from './info/router';
+import MonitorRouter from './monitor/router';
+
+let ngModules = [// 公共/第三方模块
     'ui.router',
     'oc.lazyLoad',
     'ui.bootstrap',
     CommonModule.name
 ];
 
-;[CpuRouter, RamRouter, TrafficRouter].forEach(ngMod => { ngModules.push(ngMod.name) });
+;[HomeRouter, HelpRouter, InfoRouter, MonitorRouter]// 自定义模块
+    .forEach(ngMod => { ngModules.push(ngMod.name) });
 
 let DefaultRouter = ($stateProvider, $urlRouterProvider) => {
-    $urlRouterProvider.otherwise('/cpu');
+    $urlRouterProvider.otherwise('/home');
 };
 
 DefaultRouter.$inject = ['$stateProvider', '$urlRouterProvider'];

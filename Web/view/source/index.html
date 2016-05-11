@@ -7,11 +7,10 @@
 </head>
 <body ng-app="IMonitor">
 <!-- Fixed navbar -->
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top global-navbar">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -20,28 +19,68 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="javascript:;">Home</a></li>
-                <li><a href="javascript:;">About</a></li>
-                <li><a href="javascript:;">Contact</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                <li class="active"><a ui-sref="home">首页</a></li>
+                <li uib-dropdown>
+                    <a href="javascript:;" class="dropdown-toggle" uib-dropdown-toggle>基础信息<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="javascript:;">Action</a></li>
-                        <li><a href="javascript:;">Another action</a></li>
-                        <li><a href="javascript:;">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="javascript:;">Separated link</a></li>
-                        <li><a href="javascript:;">One more separated link</a></li>
+                        <li><a ui-sref="info.users">用户信息</a></li>
+                        <li><a ui-sref="info.authority">权限管理</a></li>
+                        <li><a ui-sref="info.server">服务器信息</a></li>
                     </ul>
                 </li>
+                <li uib-dropdown>
+                    <a href="javascript:;" class="dropdown-toggle" uib-dropdown-toggle>监控系统<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a ui-sref="monitor.alarmPolicy">报警策略</a></li>
+                        <li><a ui-sref="monitor.base">基础监控</a></li>
+                        <li><a ui-sref="monitor.log">日志监控</a></li>
+                        <li><a ui-sref="monitor.alive">存活监控</a></li>
+                        <li><a ui-sref="monitor.custom">自定义监控</a></li>
+                        <li><a ui-sref="monitor.history">历史数据</a></li>
+                    </ul>
+                </li>
+                <li><a ui-sref="help">帮助</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">您好, lizhaoming</a></li>
+                <li><a href="#">退出</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
 
-<div class="container theme-showcase" role="main">
-    <div ui-view></div>
+<!-- Sidebar -->
+<div class="container-fluid global-container">
+    <div class="row">
+        <div class="global-sidebar">
+            <ul class="nav global-nav-sidebar">
+                <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">Reports</a></li>
+                <li><a href="#">Analytics</a></li>
+                <li><a href="#">Export</a></li>
+            </ul>
+            <ul class="nav global-nav-sidebar">
+                <li><a href="">Nav item</a></li>
+                <li><a href="">Nav item again</a></li>
+                <li><a href="">One more nav</a></li>
+                <li><a href="">Another nav item</a></li>
+                <li><a href="">More navigation</a></li>
+            </ul>
+            <ul class="nav global-nav-sidebar">
+                <li><a href="">Nav item again</a></li>
+                <li><a href="">One more nav</a></li>
+                <li><a href="">Another nav item</a></li>
+            </ul>
+        </div>
+        <div class="global-breadcrumb">
+            当前所在位置:
+            <ol class="breadcrumb">
+                <li>基础信息</li>
+                <li>用户信息<span>[Server-1234-1234-2423-2345]</span></li>
+            </ol>
+        </div>
+        <div ui-view class="global-main-body"></div>
+    </div>
 </div>
 </body>
 </html>
