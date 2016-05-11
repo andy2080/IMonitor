@@ -3,6 +3,7 @@ import Queue, json, threading, time
 from BaseClass import Base
 from LogDataClass import LogData
 from ProcDataClass import ProcData
+from SendDataClass import SendData
 class ProcessData(Base):
     '''
     数据处理类
@@ -10,7 +11,7 @@ class ProcessData(Base):
     '''
     number = 5
     sleep = 0.1
-    exception = ['__init__', '﻿__module__', 'number', 'sleep', 'exception', '__doc__']
+    exception = ['__init__', 'number', 'sleep', 'exception', '__doc__', '__module__']
     def __init__(self, queue = Queue.Queue()):
         self.dataQueue = queue
         self.proc = ProcData()
@@ -24,7 +25,7 @@ class ProcessData(Base):
             loadData = []
             for i in range(self.number):
                 load = self.proc.getLoadAvg()
-                loadData.append({self.getTime():load[2]})
+                loadData.append([self.getTime(),load[2]])
                 time.sleep(self.sleep)
             data = {'load':loadData}
             self.dataQueue.put_nowait(data)
@@ -38,7 +39,7 @@ class ProcessData(Base):
             memData = []
             for i in range(self.number):
                 memUsage = self.proc.getMemUsage()
-                memData.append({self.getTime():memUsage})
+                memData.append([self.getTime(), memUsage])
                 time.sleep(self.sleep)
             data = {'mem':memData}
             self.dataQueue.put_nowait(data)
@@ -53,8 +54,8 @@ class ProcessData(Base):
             out_net = []
             for i in range(self.number):
                 netIO = self.proc.getNetIO()
-                in_net.append({self.getTime():netIO['in_net']})
-                out_net.append({self.getTime():netIO['out_net']})
+                in_net.append([self.getTime(), netIO['in_net']])
+                out_net.append([self.getTime(), netIO['out_net']])
                 time.sleep(self.sleep)
             data = {'in_net':in_net, 'out_net':out_net}
             self.dataQueue.put_nowait(data)
@@ -69,8 +70,8 @@ class ProcessData(Base):
             free = []
             for i in range(self.number):
                 uptime = self.proc.getUptime()
-                run.append({self.getTime():uptime['run']})
-                free.append({self.getTime():uptime['free']})
+                run.append([self.getTime(), uptime['run']])
+                free.append([self.getTime(), uptime['free']])
                 time.sleep(self.sleep)
             data = {'run':run, 'free':free}
             self.dataQueue.put_nowait(data)
@@ -84,7 +85,7 @@ class ProcessData(Base):
                 stat2 = self.proc.getStat()
                 time.sleep(self.sleep)
                 usage = (float(stat2['idle']['cpu']) - float(stat1['idle']['cpu'])) / (float(stat2['total']['cpu']) - float(stat1['total']['cpu']))
-                usageData.append({self.getTime():usage})
+                usageData.append([self.getTime(), usage])
             data = {'stat':usageData}
             self.dataQueue.put_nowait(data)
 
@@ -93,21 +94,27 @@ class ProcessData(Base):
         读取队列
         :return:
         '''
+        send = SendData()
         while True:
-            print self.dataQueue.get()
+            data = self.dataQueue.get()
+            data = json.dumps(data)
+            send.sendData(data)
 
     def start(self):
-        # dict = self.__class__.__dict__
-        # for function in dict:
-        #     if function not in self.exception:
-        #         target = function
-        #         t = threading.Thread()
-        #         t.start()
-        t = threading.Thread(target=self.putLoadAvg)
-        t.start()
-        t3 = threading.Thread(target=self.putMemUsage)
-        t3.start()
-        t2 = threading.Thread(target=self.get)
-        t2.start()
-        t4 = threading.Thread(target=self.putStat)
-        t4.start()
+        strs = []
+        dict = self.__class__.__dict__
+        for function in dict:
+            if function not in self.exception:
+                target = function
+                print type(getattr(self, target))
+                t = threading.Thread(target=getattr(self, target))
+                t.start()
+
+        # t = threading.Thread(target=self.putLoadAvg)
+        # t.start()
+        # t3 = threading.Thread(target=self.putMemUsage)
+        # t3.start()
+        # # t2 = threading.Thread(target=self.get)
+        # # t2.start()
+        # t4 = threading.Thread(target=self.putStat)
+        # t4.start()
