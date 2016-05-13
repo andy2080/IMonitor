@@ -24,7 +24,7 @@
                     <a href="javascript:;" class="dropdown-toggle" uib-dropdown-toggle>基础信息<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a ui-sref="info.users">用户信息</a></li>
-                        <li><a ui-sref="info.authority">权限管理</a></li>
+                        <!--<li><a ui-sref="info.authority">权限管理</a></li>-->
                         <li><a ui-sref="info.server">服务器信息</a></li>
                     </ul>
                 </li>
@@ -53,30 +53,17 @@
 <div class="container-fluid global-container">
     <div class="row">
         <div class="global-sidebar">
+            <div class="global-nav-title">服务器列表</div>
             <ul class="nav global-nav-sidebar">
-                <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Reports</a></li>
-                <li><a href="#">Analytics</a></li>
-                <li><a href="#">Export</a></li>
-            </ul>
-            <ul class="nav global-nav-sidebar">
-                <li><a href="">Nav item</a></li>
-                <li><a href="">Nav item again</a></li>
-                <li><a href="">One more nav</a></li>
-                <li><a href="">Another nav item</a></li>
-                <li><a href="">More navigation</a></li>
-            </ul>
-            <ul class="nav global-nav-sidebar">
-                <li><a href="">Nav item again</a></li>
-                <li><a href="">One more nav</a></li>
-                <li><a href="">Another nav item</a></li>
+                <li class="active"><a href="#">Server-1234</a></li>
+                <li><a href="#">Server-2234</a></li>
             </ul>
         </div>
         <div class="global-breadcrumb">
             当前所在位置:
             <ol class="breadcrumb">
                 <li>基础信息</li>
-                <li>用户信息<span>[Server-1234-1234-2423-2345]</span></li>
+                <li>用户信息<span>[Server-1234]</span></li>
             </ol>
         </div>
         <div ui-view class="global-main-body"></div>

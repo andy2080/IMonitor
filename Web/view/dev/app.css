@@ -23,6 +23,14 @@ body {
 }
 
 /* Sidebar navigation */
+.global-nav-title {
+    margin-right: -21px;
+    margin-left: -20px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    box-shadow: 0 0 2px 2px rgba(0,0,0,.5) inset;
+}
 .global-nav-sidebar {
     margin-right: -21px; /* 20px padding + 1px border */
     margin-bottom: 20px;

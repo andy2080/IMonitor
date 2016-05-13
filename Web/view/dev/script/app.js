@@ -20,7 +20,7 @@ webpackJsonp([0],[
 
 	var _router6 = _interopRequireDefault(_router5);
 
-	var _router7 = __webpack_require__(47);
+	var _router7 = __webpack_require__(49);
 
 	var _router8 = _interopRequireDefault(_router7);
 
@@ -469,7 +469,7 @@ webpackJsonp([0],[
 	        templateProvider: function templateProvider($q) {
 	            return $q(function (resolve) {
 	                __webpack_require__.e/* nsure */(6, function () {
-	                    resolve(__webpack_require__(44));
+	                    resolve(__webpack_require__(46));
 	                });
 	            });
 	        }
@@ -479,7 +479,7 @@ webpackJsonp([0],[
 	        templateProvider: function templateProvider($q) {
 	            return $q(function (resolve) {
 	                __webpack_require__.e/* nsure */(7, function () {
-	                    resolve(__webpack_require__(45));
+	                    resolve(__webpack_require__(47));
 	                });
 	            });
 	        }
@@ -489,7 +489,7 @@ webpackJsonp([0],[
 	        templateProvider: function templateProvider($q) {
 	            return $q(function (resolve) {
 	                __webpack_require__.e/* nsure */(8, function () {
-	                    resolve(__webpack_require__(46));
+	                    resolve(__webpack_require__(48));
 	                });
 	            });
 	        }
@@ -524,7 +524,9 @@ webpackJsonp([0],[
 /* 44 */,
 /* 45 */,
 /* 46 */,
-/* 47 */
+/* 47 */,
+/* 48 */,
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -533,7 +535,7 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	__webpack_require__(48);
+	__webpack_require__(50);
 
 	var Router = function Router($urlRouterProvider, $stateProvider) {
 	    $stateProvider.state('monitor', {
@@ -545,7 +547,7 @@ webpackJsonp([0],[
 	            asyncLoadCtrl: function asyncLoadCtrl($q, $ocLazyLoad) {
 	                return $q(function (resolve) {
 	                    __webpack_require__.e/* nsure */(9, function () {
-	                        var ngModule = __webpack_require__(50).default;
+	                        var ngModule = __webpack_require__(52).default;
 	                        $ocLazyLoad.load({ name: ngModule.name });
 	                        resolve(ngModule.controller);
 	                    });
@@ -558,7 +560,7 @@ webpackJsonp([0],[
 	        templateProvider: function templateProvider($q) {
 	            return $q(function (resolve) {
 	                __webpack_require__.e/* nsure */(10, function () {
-	                    resolve(__webpack_require__(58));
+	                    resolve(__webpack_require__(62));
 	                });
 	            });
 	        }
@@ -568,7 +570,7 @@ webpackJsonp([0],[
 	        templateProvider: function templateProvider($q) {
 	            return $q(function (resolve) {
 	                __webpack_require__.e/* nsure */(11, function () {
-	                    resolve(__webpack_require__(59));
+	                    resolve(__webpack_require__(63));
 	                });
 	            });
 	        }
@@ -578,7 +580,7 @@ webpackJsonp([0],[
 	        templateProvider: function templateProvider($q) {
 	            return $q(function (resolve) {
 	                __webpack_require__.e/* nsure */(12, function () {
-	                    resolve(__webpack_require__(60));
+	                    resolve(__webpack_require__(64));
 	                });
 	            });
 	        }
@@ -588,7 +590,7 @@ webpackJsonp([0],[
 	        templateProvider: function templateProvider($q) {
 	            return $q(function (resolve) {
 	                __webpack_require__.e/* nsure */(13, function () {
-	                    resolve(__webpack_require__(61));
+	                    resolve(__webpack_require__(65));
 	                });
 	            });
 	        }
@@ -598,7 +600,7 @@ webpackJsonp([0],[
 	        templateProvider: function templateProvider($q) {
 	            return $q(function (resolve) {
 	                __webpack_require__.e/* nsure */(14, function () {
-	                    resolve(__webpack_require__(62));
+	                    resolve(__webpack_require__(66));
 	                });
 	            });
 	        }
@@ -608,7 +610,7 @@ webpackJsonp([0],[
 	        templateProvider: function templateProvider($q) {
 	            return $q(function (resolve) {
 	                __webpack_require__.e/* nsure */(15, function () {
-	                    resolve(__webpack_require__(63));
+	                    resolve(__webpack_require__(67));
 	                });
 	            });
 	        }
@@ -620,7 +622,7 @@ webpackJsonp([0],[
 	exports.default = angular.module('IMonitor.MonitorRouter', []).config(Router);
 
 /***/ },
-/* 48 */
+/* 50 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

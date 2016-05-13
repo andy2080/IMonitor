@@ -1,6 +1,6 @@
 webpackJsonp([7],{
 
-/***/ 45:
+/***/ 47:
 /***/ function(module, exports) {
 
 	module.exports = "权限信息";

@@ -17,23 +17,23 @@ webpackJsonp([5],{
 
 	var _UsersInfo = __webpack_require__(35);
 
-	var _AvgOfOneMinuteLoadChart = __webpack_require__(36);
+	var _AvgOfOneMinuteLoadChart = __webpack_require__(37);
 
-	var _IMonitorChart = __webpack_require__(37);
+	var _IMonitorChart = __webpack_require__(38);
 
-	var _NumOfRunningProcessChart = __webpack_require__(38);
+	var _NumOfRunningProcessChart = __webpack_require__(39);
 
-	var _NumOfBlockProcessChart = __webpack_require__(39);
+	var _NumOfBlockProcessChart = __webpack_require__(40);
 
-	var _MemoryUsageRateChart = __webpack_require__(40);
+	var _MemoryUsageRateChart = __webpack_require__(41);
 
-	var _CpuUsageRateChart = __webpack_require__(41);
+	var _CpuUsageRateChart = __webpack_require__(42);
 
-	var _EthernetFlowChart = __webpack_require__(42);
+	var _EthernetFlowChart = __webpack_require__(43);
 
-	var _DistSpaceChart = __webpack_require__(43);
+	var _DistSpaceChart = __webpack_require__(44);
 
-	var _DiskIOChart = __webpack_require__(77);
+	var _DiskIOChart = __webpack_require__(45);
 
 	exports.default = angular.module('IMonitor.Info', ['ui.bootstrap']).controller('InfoCtrl', _Info.InfoController).controller('AuthorityInfoCtrl', _AuthorityInfo.AuthorityInfoController).controller('ServerInfoCtrl', _ServerInfo.ServerInfoController).controller('UsersInfoCtrl', _UsersInfo.UsersInfoController)
 	// Directive Of charts
@@ -99,23 +99,105 @@ webpackJsonp([5],{
 /***/ },
 
 /***/ 35:
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	exports.UsersInfoController = undefined;
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _editUserWindow = __webpack_require__(36);
+
+	var _editUserWindow2 = _interopRequireDefault(_editUserWindow);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var UsersInfoController = exports.UsersInfoController = function UsersInfoController() {
-	    _classCallCheck(this, UsersInfoController);
-	};
+	var UsersInfoController = exports.UsersInfoController = function () {
+	    function UsersInfoController($uibModal, $log) {
+	        _classCallCheck(this, UsersInfoController);
+
+	        var vm = this;
+	        vm.$uibModal = $uibModal;
+	        vm.$log = $log;
+	        vm.table = {
+	            data: [{
+	                id: 1,
+	                loginName: 'David',
+	                cnName: '大卫',
+	                email: 'david@gmail.com',
+	                phone: '15530008080',
+	                status: '正常',
+	                limit: '系统管理员'
+	            }]
+	        };
+	    }
+
+	    _createClass(UsersInfoController, [{
+	        key: 'editUser',
+	        value: function editUser(id) {
+	            var vm = this;
+	            var modalInstance = vm.$uibModal.open({
+	                animation: true,
+	                template: _editUserWindow2.default,
+	                controller: EditUserWindowController,
+	                controllerAs: 'EditUserWindowVm'
+	            });
+
+	            modalInstance.result.then(function () {
+	                vm.$log.info('Modal ok at: ' + new Date());
+	            }, function () {
+	                vm.$log.info('Modal dismissed at: ' + new Date());
+	            });
+	        }
+	    }]);
+
+	    return UsersInfoController;
+	}();
+
+	UsersInfoController.$inject = ['$uibModal', '$log'];
+
+	var EditUserWindowController = function () {
+	    function EditUserWindowController($scope, $uibModalInstance) {
+	        _classCallCheck(this, EditUserWindowController);
+
+	        var vm = this;
+	        vm.$scope = $scope;
+	        vm.$uibModalInstance = $uibModalInstance;
+	    }
+
+	    _createClass(EditUserWindowController, [{
+	        key: 'ok',
+	        value: function ok() {
+	            this.$uibModalInstance.close('ok');
+	        }
+	    }, {
+	        key: 'cancel',
+	        value: function cancel() {
+	            this.$uibModalInstance.dismiss('cancel');
+	        }
+	    }]);
+
+	    return EditUserWindowController;
+	}();
+
+	EditUserWindowController.$inject = ['$scope', '$uibModalInstance'];
 
 /***/ },
 
 /***/ 36:
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"modal-header\">\n    <button type=\"button\" class=\"close\"  ng-click=\"EditUserWindowVm.cancel()\"><span aria-hidden=\"true\">&times;</span></button>\n    <h4 class=\"modal-title\" id=\"exampleModalLabel\">添加新用户</h4>\n</div>\n<div class=\"modal-body\">\n    <form class=\"form-horizontal\">\n        <div class=\"form-group\">\n            <label for=\"input1\" class=\"col-sm-2 control-label\">\n                <span class=\"text-danger\">*</span>登录名:\n            </label>\n            <div class=\"col-sm-10\">\n                <input type=\"text\" id=\"input1\" class=\"form-control\">\n            </div>\n        </div>\n        <div class=\"form-group\">\n            <label for=\"input2\" class=\"col-sm-2 control-label\">\n                中文名:\n            </label>\n            <div class=\"col-sm-10\">\n                <input type=\"text\" id=\"input2\" class=\"form-control\">\n            </div>\n        </div>\n        <div class=\"form-group\">\n            <label for=\"input3\" class=\"col-sm-2 control-label\">\n                <span class=\"text-danger\">*</span>邮箱:\n            </label>\n            <div class=\"col-sm-10\">\n                <input type=\"text\" id=\"input3\" class=\"form-control\">\n            </div>\n        </div>\n        <div class=\"form-group\">\n            <label for=\"input4\" class=\"col-sm-2 control-label\">\n                <span class=\"text-danger\">*</span>手机号:\n            </label>\n            <div class=\"col-sm-10\">\n                <input type=\"text\" id=\"input4\" class=\"form-control\">\n            </div>\n        </div>\n    </form>\n</div>\n<div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-default\" ng-click=\"EditUserWindowVm.cancel()\">关闭</button>\n    <button type=\"button\" class=\"btn btn-primary\" ng-click=\"EditUserWindowVm.ok()\">确定</button>\n</div>";
+
+/***/ },
+
+/***/ 37:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -197,7 +279,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 37:
+/***/ 38:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -270,7 +352,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 38:
+/***/ 39:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -352,7 +434,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 39:
+/***/ 40:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -434,7 +516,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 40:
+/***/ 41:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -516,7 +598,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 41:
+/***/ 42:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -598,7 +680,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 42:
+/***/ 43:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -695,7 +777,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 43:
+/***/ 44:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -743,7 +825,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 77:
+/***/ 45:
 /***/ function(module, exports) {
 
 	'use strict';

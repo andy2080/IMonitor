@@ -24,11 +24,10 @@
     }
 </style>
 <div class="panel panel-default component-panel">
-    <!-- Default panel contents -->
     <div class="panel-heading clearfix">
         报警策略
         <div class="pull-right">
-            <button class="btn btn-sm btn-success"><i class="iconfont icon-add"></i>添加报警策略</button>
+            <button class="btn btn-sm btn-success" ng-click="AlarmPolicyVm.addAlarmPolicy()"><i class="iconfont icon-add"></i>添加报警策略</button>
         </div>
     </div>
     <div class="panel-body">
@@ -82,41 +81,11 @@
                 <button class="btn btn-sm btn-default" ng-click="AlarmPolicyVm.toggleApply(data.id)">{{data.isApply == '1' ? '启用' : '取消' }}</button>
             </td>
             <td>
-                <button class="btn btn-sm btn-default" ng-click="AlarmPolicyVm.editItem(data.id)">编辑</button>
+                <button class="btn btn-sm btn-default" ng-click="AlarmPolicyVm.editAlarmPolicy(data.id)">编辑</button>
                 <button class="btn btn-sm btn-default" ng-click="AlarmPolicyVm.deleteItem(data.id)">删除</button>
                 <button class="btn btn-sm btn-default" ng-click="AlarmPolicyVm.setException(data.id)">设置例外</button>
             </td>
         </tr>
-        <!--<tr>
-            <td>测试CPU报警</td>
-            <td>Falcon_backend</td>
-            <td>CPU_IDLE</td>
-            <td>&gt;=100百分率</td>
-            <td>持续60秒</td>
-            <td>2</td>
-            <td>查看</td>
-            <td><button class="btn btn-sm btn-default">启用</button></td>
-            <td>
-                <button class="btn btn-sm btn-default">编辑</button>
-                <button class="btn btn-sm btn-default">删除</button>
-                <button class="btn btn-sm btn-default">设置例外</button>
-            </td>
-        </tr>-->
-        <!--<tr>
-            <td>测试CPU报警</td>
-            <td>Falcon_backend</td>
-            <td>CPU_IDLE</td>
-            <td>&gt;=100百分率</td>
-            <td>持续60秒</td>
-            <td>2</td>
-            <td>查看</td>
-            <td><button class="btn btn-sm btn-default">启用</button></td>
-            <td>
-                <button class="btn btn-sm btn-default">编辑</button>
-                <button class="btn btn-sm btn-default">删除</button>
-                <button class="btn btn-sm btn-default">设置例外</button>
-            </td>
-        </tr>-->
         </tbody>
     </table>
     <div class="clearfix">
