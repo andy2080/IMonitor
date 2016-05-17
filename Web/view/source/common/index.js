@@ -1,5 +1,6 @@
 import './style/style.css';
+import { PollingFactory } from './service/PollingFactory'
 
-import imMapModule from './component/index';
-
-export default angular.module('IMonitor.Common', ['ui.bootstrap', imMapModule.name]);
+export default angular
+    .module('IMonitor.Common', [])
+    .factory('polling', PollingFactory)

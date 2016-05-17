@@ -1,6 +1,6 @@
 webpackJsonp([2],{
 
-/***/ 20:
+/***/ 11:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9,13 +9,13 @@ webpackJsonp([2],{
 	    value: true
 	});
 
-	var _home = __webpack_require__(21);
+	var _home = __webpack_require__(12);
 
 	exports.default = angular.module('IMonitor.Home', ['ui.bootstrap']).controller('HomeCtrl', _home.HomeController);
 
 /***/ },
 
-/***/ 21:
+/***/ 12:
 /***/ function(module, exports) {
 
 	"use strict";

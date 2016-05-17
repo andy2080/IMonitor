@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 19:
+/***/ 10:
 /***/ function(module, exports) {
 
 	module.exports = "主页";
