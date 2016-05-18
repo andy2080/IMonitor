@@ -1,6 +1,6 @@
-webpackJsonp([15],{
+webpackJsonp([13],{
 
-/***/ 67:
+/***/ 65:
 /***/ function(module, exports) {
 
 	module.exports = "历史监控";

@@ -4,6 +4,7 @@ let Router = ($urlRouterProvider, $stateProvider) => {
     $stateProvider.state('home', {
         url: '/home',
         controller: 'HomeCtrl as HomeVm',
+        data: { sidebar: false },
         templateProvider: $q => {
             return $q(resolve => {
                 require.ensure([], () => {

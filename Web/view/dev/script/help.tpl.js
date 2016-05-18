@@ -1,6 +1,6 @@
 webpackJsonp([3],{
 
-/***/ 16:
+/***/ 19:
 /***/ function(module, exports) {
 
 	module.exports = "帮助";

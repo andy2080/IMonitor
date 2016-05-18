@@ -68,12 +68,12 @@
         </thead>
         <tbody>
         <tr ng-repeat="data in AlarmPolicyVm.table.data track by $index">
-            <td>{{data.policyName}}</td>
-            <td>{{data.alarmGroup}}</td>
-            <td>{{data.monitorItem}}</td>
-            <td>{{data.compare}}</td>
-            <td>持续{{data.during}}秒</td>
-            <td>{{data.maxAlarmTime}}</td>
+            <td ng-bind="data.policyName"></td>
+            <td ng-bind="data.alarmGroup"></td>
+            <td ng-bind="data.monitorItem"></td>
+            <td ng-bind="data.compare"></td>
+            <td ng-bind="'持续'+data.during+'秒'"></td>
+            <td ng-bind="data.maxAlarmTime"></td>
             <td>
                 <a href="javascript:;" ng-click="AlarmPolicyVm.viewDetail(data.id)">查看</a>
             </td>

@@ -5,7 +5,7 @@ let Router = ($urlRouterProvider, $stateProvider) => {
     $stateProvider
         .state('info', {
             url: '/info',
-            //controller: 'InfoCtrl as InfoVm',
+            controller: 'InfoCtrl as InfoVm',
             abstract: true,
             template: '<div ui-view></div>',
             resolve: {
@@ -21,8 +21,9 @@ let Router = ($urlRouterProvider, $stateProvider) => {
             }
         })
         .state('info.users', {
-            url: '/users',
+            url: '/users/:currentServer',
             controller: 'UsersInfoCtrl as UsersInfoVm',
+            data: { breadcrumb: ['基础信息', '用户信息'] },
             templateProvider: $q => {
                 return $q(resolve => {
                     require.ensure([], () => {
@@ -32,8 +33,9 @@ let Router = ($urlRouterProvider, $stateProvider) => {
             }
         })
         .state('info.authority', {
-            url: '/authority',
+            url: '/authority/:currentServer',
             controller: 'AuthorityInfoCtrl as AuthorityInfoVm',
+            data: { breadcrumb: ['基础信息', '用户权限'] },
             templateProvider: $q => {
                 return $q(resolve => {
                     require.ensure([], () => {
@@ -43,8 +45,9 @@ let Router = ($urlRouterProvider, $stateProvider) => {
             }
         })
         .state('info.server', {
-            url: '/server',
+            url: '/server/:currentServer',
             controller: 'ServerInfoCtrl as ServerInfoVm',
+            data: { breadcrumb: ['基础信息', '服务器信息'] },
             templateProvider: $q => {
                 return $q(resolve => {
                     require.ensure([], () => {

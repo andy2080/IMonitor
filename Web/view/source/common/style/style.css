@@ -2,6 +2,9 @@ body {
     padding-top: 50px;
     padding-bottom: 30px;
 }
+.ng-cloak {
+    display: none!important;
+}
 /* 上方导航 */
 .global-navbar {
     margin-bottom: 0;
@@ -76,4 +79,7 @@ body {
     overflow: hidden;
     background-color: #f5f5f5;
     border: 1px solid #eee;
+}
+.global-container.full-fill {
+    margin-left: 0;
 }

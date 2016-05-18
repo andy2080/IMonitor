@@ -1,6 +1,6 @@
 webpackJsonp([2],{
 
-/***/ 11:
+/***/ 14:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9,16 +9,16 @@ webpackJsonp([2],{
 	    value: true
 	});
 
-	var _home = __webpack_require__(12);
+	var _home = __webpack_require__(15);
 
 	exports.default = angular.module('IMonitor.Home', ['ui.bootstrap']).controller('HomeCtrl', _home.HomeController);
 
 /***/ },
 
-/***/ 12:
+/***/ 15:
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -26,9 +26,20 @@ webpackJsonp([2],{
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var HomeController = exports.HomeController = function HomeController() {
+	var HomeController = exports.HomeController = function HomeController($stateParams, $http) {
 	    _classCallCheck(this, HomeController);
+
+	    $http({
+	        url: './json/login_success.json',
+	        data: {
+	            username: 'LiMing',
+	            password: 'FUCK_OFF'
+	        },
+	        method: 'GET'
+	    }).then(function (res) {}).catch(function (res) {});
 	};
+
+	HomeController.$inject = ['$stateParams', '$http'];
 
 /***/ }
 

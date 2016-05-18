@@ -20,8 +20,9 @@ let Router = ($urlRouterProvider, $stateProvider) => {
             }
         })
         .state('monitor.alarmPolicy', {
-            url: '/alarmPolicy',
+            url: '/alarmPolicy/:currentServer',
             controller: 'AlarmPolicyCtrl as AlarmPolicyVm',
+            data: { breadcrumb: ['监控系统', '报警策略'] },
             templateProvider: $q => {
                 return $q(resolve => {
                     require.ensure([], () => {
@@ -31,8 +32,9 @@ let Router = ($urlRouterProvider, $stateProvider) => {
             }
         })
         .state('monitor.alive', {
-            url: '/alive',
+            url: '/alive/:currentServer',
             controller: 'AliveMonitorCtrl as AliveMonitorVm',
+            data: { breadcrumb: ['监控系统', '存活监控'] },
             templateProvider: $q => {
                 return $q(resolve => {
                     require.ensure([], () => {
@@ -42,8 +44,9 @@ let Router = ($urlRouterProvider, $stateProvider) => {
             }
         })
         .state('monitor.base', {
-            url: '/base',
+            url: '/base/:currentServer',
             controller: 'BaseMonitorCtrl as BaseMonitorVm',
+            data: { breadcrumb: ['监控系统', '基础监控'] },
             templateProvider: $q => {
                 return $q(resolve => {
                     require.ensure([], () => {
@@ -53,8 +56,9 @@ let Router = ($urlRouterProvider, $stateProvider) => {
             }
         })
         .state('monitor.custom', {
-            url: '/custom',
+            url: '/custom/:currentServer',
             controller: 'CustomMonitorCtrl as CustomMonitorVm',
+            data: { breadcrumb: ['监控系统', '自定义监控'] },
             templateProvider: $q => {
                 return $q(resolve => {
                     require.ensure([], () => {
@@ -64,8 +68,9 @@ let Router = ($urlRouterProvider, $stateProvider) => {
             }
         })
         .state('monitor.log', {
-            url: '/log',
+            url: '/log/:currentServer',
             controller: 'LogMonitorCtrl as LogMonitorVm',
+            data: { breadcrumb: ['监控系统', '日志监控'] },
             templateProvider: $q => {
                 return $q(resolve => {
                     require.ensure([], () => {
@@ -75,8 +80,9 @@ let Router = ($urlRouterProvider, $stateProvider) => {
             }
         })
         .state('monitor.history', {
-            url: '/history',
+            url: '/history/:currentServer',
             controller: 'HistoryMonitorCtrl as HistoryMonitorVm',
+            data: { breadcrumb: ['监控系统', '历史监控'] },
             templateProvider: $q => {
                 return $q(resolve => {
                     require.ensure([], () => {
