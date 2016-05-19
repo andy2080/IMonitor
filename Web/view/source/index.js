@@ -1,7 +1,6 @@
 import CommonModule from './common/index';
 
 import HomeRouter from './home/router';
-import HelpRouter from './help/router';
 import InfoRouter from './info/router';
 import MonitorRouter from './monitor/router';
 
@@ -12,7 +11,7 @@ let ngModules = [// 公共/第三方模块
     CommonModule.name
 ];
 
-;[HomeRouter, HelpRouter, InfoRouter, MonitorRouter]// 自定义模块
+;[HomeRouter, InfoRouter, MonitorRouter]// 自定义模块
     .forEach(ngMod => { ngModules.push(ngMod.name) });
 
 let DefaultRouter = ($stateProvider, $urlRouterProvider) => {

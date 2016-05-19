@@ -9,8 +9,16 @@ import { NumOfBlockProcessController } from './controller/NumOfBlockProcessChart
 import { MemoryUsageRateController } from './controller/MemoryUsageRateChart';
 import { CpuUsageRateController } from './controller/CpuUsageRateChart';
 import { EthernetFlowController } from './controller/EthernetFlowChart';
-import { DistSpaceController } from './controller/DistSpaceChart';
+import { DiskSpaceController } from './controller/DiskSpaceChart';
 import { DiskIOController } from './controller/DiskIOChart';
+import { DrawCpuUsageRateChartFactory } from './service/DrawCpuUsageRateChartFactory';
+import { DrawAvgOfOneMinuteChartFactory } from './service/DrawAvgOfOneMinuteChartFactory';
+import { DrawNumOfRunningProcessChartFactory } from './service/DrawNumOfRunningProcessChartFactory';
+import { DrawNumOfBlockProcessChartFactory } from './service/DrawNumOfBlockProcessChartFactory';
+import { DrawMemoryUsageRateChartFactory } from './service/DrawMemoryUsageRateChartFactory';
+import { DrawEthernetFlowChartFactory } from './service/DrawEthernetFlowChartFactory';
+import { DrawDiskSpaceChartFactory } from './service/DrawDiskSpaceChartFactory';
+import { DrawDiskIOChartFactory } from './service/DrawDiskIOChartFactory';
 
 export default angular
     .module('IMonitor.Info', ['ui.bootstrap'])
@@ -27,5 +35,13 @@ export default angular
     .controller('MemoryUsageRateCtrl', MemoryUsageRateController)
     .controller('CpuUsageRateCtrl', CpuUsageRateController)
     .controller('EthernetFlowCtrl', EthernetFlowController)
-    .controller('DistSpaceCtrl', DistSpaceController)
+    .controller('DistSpaceCtrl', DiskSpaceController)
     .controller('DiskIOCtrl', DiskIOController)
+    .factory('drawCpuUsageRateChart', DrawCpuUsageRateChartFactory)
+    .factory('drawAvgOfOneMinuteChart', DrawAvgOfOneMinuteChartFactory)
+    .factory('drawNumOfRunningProcessChart', DrawNumOfRunningProcessChartFactory)
+    .factory('drawNumOfBlockProcessChart', DrawNumOfBlockProcessChartFactory)
+    .factory('drawMemoryUsageRateChart', DrawMemoryUsageRateChartFactory)
+    .factory('drawEthernetFlowChart', DrawEthernetFlowChartFactory)
+    .factory('drawDiskSpaceChart', DrawDiskSpaceChartFactory)
+    .factory('drawDiskIOChart', DrawDiskIOChartFactory)

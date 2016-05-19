@@ -3,13 +3,13 @@ import select, json
 from socket import *
 from Models import config
 from Models.ParseDataClass import ParseData
-from Models.ProcMongoClass import ProcMongo
+from Models.MonitorMongoClass import MonitorMongo
 
 # 实例化数据格式化
 parseClass = ParseData()
 
 # 实例化ProcMongo
-procMongo = ProcMongo('monitor')
+monitorMongo = MonitorMongo('monitor')
 
 # 连接Socket
 connectList = []
@@ -35,9 +35,8 @@ while True:
                     (ip, port) = sock.getpeername()
                     onData = parseClass.parse(data, ip)
                     print onData
-                    res = procMongo.save(onData)
+                    res = monitorMongo.save(onData)
                     print res
-                    # TODO: 将数据添加到数据库
                     # print "Client (%s, %s) send data:\n %s" % (ip, port, data)
                     print ''
                     print ''

@@ -1,0 +1,13 @@
+{
+  "status": 0,
+  "servers": [
+    {
+      "id": 1,
+      "name": "Server-1234"
+    },
+    {
+      "id": 2,
+      "name": "Server-2234"
+    }
+  ]
+}

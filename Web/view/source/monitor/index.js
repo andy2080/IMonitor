@@ -5,6 +5,7 @@ import { BaseMonitorController } from './controller/BaseMonitor';
 import { CustomMonitorController } from './controller/CustomMonitor';
 import { HistoryMonitorController } from './controller/HistoryMonitor';
 import { LogMonitorController } from './controller/LogMonitor';
+import { GetAlarmPolicyListFactory } from './service/GetAlarmPolicyListFactory';
 export default angular
     .module('IMonitor.Monitor', ['ui.bootstrap'])
     .controller('MonitorCtrl', MonitorController)
@@ -14,3 +15,4 @@ export default angular
     .controller('CustomMonitorCtrl', CustomMonitorController)
     .controller('HistoryMonitorCtrl', HistoryMonitorController)
     .controller('LogMonitorCtrl', LogMonitorController)
+    .factory('getAlarmPolicyList', GetAlarmPolicyListFactory);

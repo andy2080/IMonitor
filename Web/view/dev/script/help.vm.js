@@ -1,6 +1,6 @@
 webpackJsonp([4],{
 
-/***/ 26:
+/***/ 20:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9,13 +9,13 @@ webpackJsonp([4],{
 	    value: true
 	});
 
-	var _help = __webpack_require__(27);
+	var _help = __webpack_require__(21);
 
 	exports.default = angular.module('IMonitor.Help', ['ui.bootstrap']).controller('HelpCtrl', _help.HelpController);
 
 /***/ },
 
-/***/ 27:
+/***/ 21:
 /***/ function(module, exports) {
 
 	"use strict";

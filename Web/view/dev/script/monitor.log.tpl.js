@@ -1,6 +1,6 @@
-webpackJsonp([14],{
+webpackJsonp([12],{
 
-/***/ 62:
+/***/ 64:
 /***/ function(module, exports) {
 
 	module.exports = "日志监控";
