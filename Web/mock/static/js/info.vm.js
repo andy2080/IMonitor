@@ -5,7 +5,7 @@ webpackJsonp([3],Array(19).concat([
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _Info = __webpack_require__(20);
@@ -50,13 +50,19 @@ webpackJsonp([3],Array(19).concat([
 
 	var _DrawDiskIOChartFactory = __webpack_require__(42);
 
+	var _AddServerUserFactory = __webpack_require__(80);
+
+	var _GetUsersListFactory = __webpack_require__(81);
+
+	var _EditServerUserFactory = __webpack_require__(82);
+
 	exports.default = angular.module('IMonitor.Info', ['ui.bootstrap']).controller('InfoCtrl', _Info.InfoController).controller('AuthorityInfoCtrl', _AuthorityInfo.AuthorityInfoController).controller('ServerInfoCtrl', _ServerInfo.ServerInfoController).controller('UsersInfoCtrl', _UsersInfo.UsersInfoController)
 	// Directive Of charts
 	.directive('iMonitorChart', function () {
-	    return new _IMonitorChart.IMonitorChartDirective();
+	  return new _IMonitorChart.IMonitorChartDirective();
 	})
 	// 服务器信息
-	.controller('AvgOfOneMinuteLoadCtrl', _AvgOfOneMinuteLoadChart.AvgOfOneMinuteLoadController).controller('NumOfRunningProcessCtrl', _NumOfRunningProcessChart.NumOfRunningProcessController).controller('NumOfBlockProcessCtrl', _NumOfBlockProcessChart.NumOfBlockProcessController).controller('MemoryUsageRateCtrl', _MemoryUsageRateChart.MemoryUsageRateController).controller('CpuUsageRateCtrl', _CpuUsageRateChart.CpuUsageRateController).controller('EthernetFlowCtrl', _EthernetFlowChart.EthernetFlowController).controller('DistSpaceCtrl', _DiskSpaceChart.DiskSpaceController).controller('DiskIOCtrl', _DiskIOChart.DiskIOController).factory('drawCpuUsageRateChart', _DrawCpuUsageRateChartFactory.DrawCpuUsageRateChartFactory).factory('drawAvgOfOneMinuteChart', _DrawAvgOfOneMinuteChartFactory.DrawAvgOfOneMinuteChartFactory).factory('drawNumOfRunningProcessChart', _DrawNumOfRunningProcessChartFactory.DrawNumOfRunningProcessChartFactory).factory('drawNumOfBlockProcessChart', _DrawNumOfBlockProcessChartFactory.DrawNumOfBlockProcessChartFactory).factory('drawMemoryUsageRateChart', _DrawMemoryUsageRateChartFactory.DrawMemoryUsageRateChartFactory).factory('drawEthernetFlowChart', _DrawEthernetFlowChartFactory.DrawEthernetFlowChartFactory).factory('drawDiskSpaceChart', _DrawDiskSpaceChartFactory.DrawDiskSpaceChartFactory).factory('drawDiskIOChart', _DrawDiskIOChartFactory.DrawDiskIOChartFactory);
+	.controller('AvgOfOneMinuteLoadCtrl', _AvgOfOneMinuteLoadChart.AvgOfOneMinuteLoadController).controller('NumOfRunningProcessCtrl', _NumOfRunningProcessChart.NumOfRunningProcessController).controller('NumOfBlockProcessCtrl', _NumOfBlockProcessChart.NumOfBlockProcessController).controller('MemoryUsageRateCtrl', _MemoryUsageRateChart.MemoryUsageRateController).controller('CpuUsageRateCtrl', _CpuUsageRateChart.CpuUsageRateController).controller('EthernetFlowCtrl', _EthernetFlowChart.EthernetFlowController).controller('DistSpaceCtrl', _DiskSpaceChart.DiskSpaceController).controller('DiskIOCtrl', _DiskIOChart.DiskIOController).factory('drawCpuUsageRateChart', _DrawCpuUsageRateChartFactory.DrawCpuUsageRateChartFactory).factory('drawAvgOfOneMinuteChart', _DrawAvgOfOneMinuteChartFactory.DrawAvgOfOneMinuteChartFactory).factory('drawNumOfRunningProcessChart', _DrawNumOfRunningProcessChartFactory.DrawNumOfRunningProcessChartFactory).factory('drawNumOfBlockProcessChart', _DrawNumOfBlockProcessChartFactory.DrawNumOfBlockProcessChartFactory).factory('drawMemoryUsageRateChart', _DrawMemoryUsageRateChartFactory.DrawMemoryUsageRateChartFactory).factory('drawEthernetFlowChart', _DrawEthernetFlowChartFactory.DrawEthernetFlowChartFactory).factory('drawDiskSpaceChart', _DrawDiskSpaceChartFactory.DrawDiskSpaceChartFactory).factory('drawDiskIOChart', _DrawDiskIOChartFactory.DrawDiskIOChartFactory).factory('addServerUser', _AddServerUserFactory.AddServerUserFactory).factory('editServerUser', _EditServerUserFactory.EditServerUserFactory).factory('getUsersList', _GetUsersListFactory.GetUsersListFactory);
 
 /***/ },
 /* 20 */
@@ -115,7 +121,7 @@ webpackJsonp([3],Array(19).concat([
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	exports.UsersInfoController = undefined;
 
@@ -130,71 +136,64 @@ webpackJsonp([3],Array(19).concat([
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var UsersInfoController = exports.UsersInfoController = function () {
-	    function UsersInfoController($uibModal, $log) {
-	        _classCallCheck(this, UsersInfoController);
+	  function UsersInfoController($uibModal, $log, getUsersList, addServerUser, editServerUser) {
+	    _classCallCheck(this, UsersInfoController);
 
-	        var vm = this;
-	        vm.$uibModal = $uibModal;
-	        vm.$log = $log;
-	        vm.table = {
-	            data: [{
-	                id: 1,
-	                loginName: 'David',
-	                cnName: '大卫',
-	                email: 'david@gmail.com',
-	                phone: '15530008080',
-	                status: '正常',
-	                limit: '系统管理员'
-	            }]
-	        };
+	    var vm = this;
+	    vm.$uibModal = $uibModal;
+	    vm.$log = $log;
+	    vm.table = {};
+	    getUsersList().then(function (list) {
+	      return vm.table.data = list;
+	    });
+	  }
+
+	  _createClass(UsersInfoController, [{
+	    key: 'editUser',
+	    value: function editUser(id) {
+	      var vm = this;
+	      var modalInstance = vm.$uibModal.open({
+	        animation: true,
+	        template: _editUserWindow2.default,
+	        controller: EditUserWindowController,
+	        controllerAs: 'EditUserWindowVm'
+	      });
+
+	      modalInstance.result.then(function () {
+	        vm.$log.info('Modal ok at: ' + new Date());
+	      }, function () {
+	        vm.$log.info('Modal dismissed at: ' + new Date());
+	      });
 	    }
+	  }]);
 
-	    _createClass(UsersInfoController, [{
-	        key: 'editUser',
-	        value: function editUser(id) {
-	            var vm = this;
-	            var modalInstance = vm.$uibModal.open({
-	                animation: true,
-	                template: _editUserWindow2.default,
-	                controller: EditUserWindowController,
-	                controllerAs: 'EditUserWindowVm'
-	            });
-
-	            modalInstance.result.then(function () {
-	                vm.$log.info('Modal ok at: ' + new Date());
-	            }, function () {
-	                vm.$log.info('Modal dismissed at: ' + new Date());
-	            });
-	        }
-	    }]);
-
-	    return UsersInfoController;
+	  return UsersInfoController;
 	}();
 
-	UsersInfoController.$inject = ['$uibModal', '$log'];
+	UsersInfoController.$inject = ['$uibModal', '$log', 'getUsersList', 'addServerUser', 'editServerUser'];
 
 	var EditUserWindowController = function () {
-	    function EditUserWindowController($scope, $uibModalInstance) {
-	        _classCallCheck(this, EditUserWindowController);
+	  function EditUserWindowController($scope, $uibModalInstance) {
+	    _classCallCheck(this, EditUserWindowController);
 
-	        var vm = this;
-	        vm.$scope = $scope;
-	        vm.$uibModalInstance = $uibModalInstance;
+	    var vm = this;
+	    vm.$scope = $scope;
+	    vm.$uibModalInstance = $uibModalInstance;
+	  }
+
+	  _createClass(EditUserWindowController, [{
+	    key: 'ok',
+	    value: function ok() {
+	      this.$uibModalInstance.close('ok');
 	    }
+	  }, {
+	    key: 'cancel',
+	    value: function cancel() {
+	      this.$uibModalInstance.dismiss('cancel');
+	    }
+	  }]);
 
-	    _createClass(EditUserWindowController, [{
-	        key: 'ok',
-	        value: function ok() {
-	            this.$uibModalInstance.close('ok');
-	        }
-	    }, {
-	        key: 'cancel',
-	        value: function cancel() {
-	            this.$uibModalInstance.dismiss('cancel');
-	        }
-	    }]);
-
-	    return EditUserWindowController;
+	  return EditUserWindowController;
 	}();
 
 	EditUserWindowController.$inject = ['$scope', '$uibModalInstance'];
@@ -1120,6 +1119,121 @@ webpackJsonp([3],Array(19).concat([
 	}
 
 	DrawDiskIOChartFactory.$inject = ['$http'];
+
+/***/ },
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.AddServerUserFactory = AddServerUserFactory;
+	function AddServerUserFactory($http, $q) {
+	  return function (reqData) {
+	    return $http({
+	      url: '/users/add',
+	      method: 'POST',
+	      data: reqData
+	    }).then(function (res) {
+	      var data = res.data;
+	      if (data.errno == 0) {
+	        return $q.resolve(data.data.list);
+	      }
+	    }).catch(function (err) {});
+	  };
+	}
+	AddServerUserFactory.$inject = ['$http', '$q'];
+
+/***/ },
+/* 81 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.GetUsersListFactory = GetUsersListFactory;
+	function GetUsersListFactory($http, $q) {
+	  return function (reqData) {
+	    return $http({
+	      url: '/users/list',
+	      method: 'GET',
+	      data: reqData
+	    }).then(function (res) {
+	      var data = res.data;
+	      if (data.errno == 0) {
+	        return $q.resolve(data.data.list);
+	      }
+	    }).catch(function (err) {});
+	  };
+	}
+	GetUsersListFactory.$inject = ['$http', '$q'];
+
+/***/ },
+/* 82 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.EditServerUserFactory = EditServerUserFactory;
+	function EditServerUserFactory($http, $q) {
+	  return function (reqData) {
+	    return $http({
+	      url: '/users/edit',
+	      method: 'POST',
+	      data: reqData
+	    }).then(function (res) {
+	      var data = res.data;
+	      if (data.errno == 0) {
+	        return $q.resolve(data.data.list);
+	      }
+	    }).catch(function (err) {});
+	  };
+	}
+	EditServerUserFactory.$inject = ['$http', '$q'];
 
 /***/ }
 ]));

@@ -19,29 +19,35 @@ import { DrawMemoryUsageRateChartFactory } from './service/DrawMemoryUsageRateCh
 import { DrawEthernetFlowChartFactory } from './service/DrawEthernetFlowChartFactory';
 import { DrawDiskSpaceChartFactory } from './service/DrawDiskSpaceChartFactory';
 import { DrawDiskIOChartFactory } from './service/DrawDiskIOChartFactory';
+import { AddServerUserFactory } from './service/AddServerUserFactory';
+import { GetUsersListFactory } from './service/GetUsersListFactory';
+import { EditServerUserFactory } from './service/EditServerUserFactory';
 
 export default angular
-    .module('IMonitor.Info', ['ui.bootstrap'])
-    .controller('InfoCtrl', InfoController)
-    .controller('AuthorityInfoCtrl', AuthorityInfoController)
-    .controller('ServerInfoCtrl', ServerInfoController)
-    .controller('UsersInfoCtrl', UsersInfoController)
-    // Directive Of charts
-    .directive('iMonitorChart', () => new IMonitorChartDirective())
-    // 服务器信息
-    .controller('AvgOfOneMinuteLoadCtrl', AvgOfOneMinuteLoadController)
-    .controller('NumOfRunningProcessCtrl', NumOfRunningProcessController)
-    .controller('NumOfBlockProcessCtrl', NumOfBlockProcessController)
-    .controller('MemoryUsageRateCtrl', MemoryUsageRateController)
-    .controller('CpuUsageRateCtrl', CpuUsageRateController)
-    .controller('EthernetFlowCtrl', EthernetFlowController)
-    .controller('DistSpaceCtrl', DiskSpaceController)
-    .controller('DiskIOCtrl', DiskIOController)
-    .factory('drawCpuUsageRateChart', DrawCpuUsageRateChartFactory)
-    .factory('drawAvgOfOneMinuteChart', DrawAvgOfOneMinuteChartFactory)
-    .factory('drawNumOfRunningProcessChart', DrawNumOfRunningProcessChartFactory)
-    .factory('drawNumOfBlockProcessChart', DrawNumOfBlockProcessChartFactory)
-    .factory('drawMemoryUsageRateChart', DrawMemoryUsageRateChartFactory)
-    .factory('drawEthernetFlowChart', DrawEthernetFlowChartFactory)
-    .factory('drawDiskSpaceChart', DrawDiskSpaceChartFactory)
-    .factory('drawDiskIOChart', DrawDiskIOChartFactory)
+  .module('IMonitor.Info', ['ui.bootstrap'])
+  .controller('InfoCtrl', InfoController)
+  .controller('AuthorityInfoCtrl', AuthorityInfoController)
+  .controller('ServerInfoCtrl', ServerInfoController)
+  .controller('UsersInfoCtrl', UsersInfoController)
+  // Directive Of charts
+  .directive('iMonitorChart', () => new IMonitorChartDirective())
+  // 服务器信息
+  .controller('AvgOfOneMinuteLoadCtrl', AvgOfOneMinuteLoadController)
+  .controller('NumOfRunningProcessCtrl', NumOfRunningProcessController)
+  .controller('NumOfBlockProcessCtrl', NumOfBlockProcessController)
+  .controller('MemoryUsageRateCtrl', MemoryUsageRateController)
+  .controller('CpuUsageRateCtrl', CpuUsageRateController)
+  .controller('EthernetFlowCtrl', EthernetFlowController)
+  .controller('DistSpaceCtrl', DiskSpaceController)
+  .controller('DiskIOCtrl', DiskIOController)
+  .factory('drawCpuUsageRateChart', DrawCpuUsageRateChartFactory)
+  .factory('drawAvgOfOneMinuteChart', DrawAvgOfOneMinuteChartFactory)
+  .factory('drawNumOfRunningProcessChart', DrawNumOfRunningProcessChartFactory)
+  .factory('drawNumOfBlockProcessChart', DrawNumOfBlockProcessChartFactory)
+  .factory('drawMemoryUsageRateChart', DrawMemoryUsageRateChartFactory)
+  .factory('drawEthernetFlowChart', DrawEthernetFlowChartFactory)
+  .factory('drawDiskSpaceChart', DrawDiskSpaceChartFactory)
+  .factory('drawDiskIOChart', DrawDiskIOChartFactory)
+  .factory('addServerUser', AddServerUserFactory)
+  .factory('editServerUser', EditServerUserFactory)
+  .factory('getUsersList', GetUsersListFactory)
