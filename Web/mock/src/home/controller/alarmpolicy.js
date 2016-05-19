@@ -1,5 +1,6 @@
 'use strict';
 
+import Mock from 'mockjs';
 import Base from './base.js';
 
 export default class extends Base {
@@ -13,39 +14,20 @@ export default class extends Base {
   }
 
   listAction(){
-    this.success({
-      "list": [
-        {
-          "id": "0",
-          "policyName": "测试CPU报警",
-          "alarmGroup": "Falcon_backend",
-          "monitorItem": "CPU_IDLE",
-          "compare": ">=100百分率",
-          "during": "60",
-          "maxAlarmTime": "2",
-          "isApply": "1"
-        },
-        {
-          "id": "1",
-          "policyName": "测试CPU报警",
-          "alarmGroup": "Falcon_backend",
-          "monitorItem": "CPU_IDLE",
-          "compare": ">=100百分率",
-          "during": "60",
-          "maxAlarmTime": "2",
-          "isApply": "1"
-        },
-        {
-          "id": "2",
-          "policyName": "测试CPU报警",
-          "alarmGroup": "Falcon_backend",
-          "monitorItem": "CPU_IDLE",
-          "compare": ">=100百分率",
-          "during": "60",
-          "maxAlarmTime": "2",
-          "isApply": "0"
-        }
-      ]
+
+    let data = Mock.mock({
+      'list|1-8': [{
+        'id|+1': 1,
+        'policyName|2': '@first',
+        'alarmGroup|2': '@first',
+        'monitorItem|2': '@first',
+        'compare|1': ['>=100百分率', '>60秒', '>=66MB'],
+        'during|1-60': 1,
+        'maxAlarmTime|1-5': 1,
+        'isApply|1': [0, 1]
+      }]
     })
+
+    this.success(data)
   }
 }
