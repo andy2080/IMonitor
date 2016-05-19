@@ -61,7 +61,6 @@
             <th>阈值比较方法</th>
             <th>报警条件</th>
             <th>最大报警次数</th>
-            <th>详细</th>
             <th>状态</th>
             <th>操作</th>
         </tr>
@@ -75,15 +74,11 @@
             <td ng-bind="'持续'+data.during+'秒'"></td>
             <td ng-bind="data.maxAlarmTime"></td>
             <td>
-                <a href="javascript:;" ng-click="AlarmPolicyVm.viewDetail(data.id)">查看</a>
-            </td>
-            <td>
                 <button class="btn btn-sm btn-default" ng-click="AlarmPolicyVm.toggleApply(data.id)">{{data.isApply == '1' ? '启用' : '取消' }}</button>
             </td>
             <td>
                 <button class="btn btn-sm btn-default" ng-click="AlarmPolicyVm.editAlarmPolicy(data.id)">编辑</button>
                 <button class="btn btn-sm btn-default" ng-click="AlarmPolicyVm.deleteItem(data.id)">删除</button>
-                <button class="btn btn-sm btn-default" ng-click="AlarmPolicyVm.setException(data.id)">设置例外</button>
             </td>
         </tr>
         </tbody>

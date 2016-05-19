@@ -71,9 +71,6 @@ export class AlarmPolicyController{
             vm.$log.info('Modal dismissed at: ' + new Date());
         });
     }
-    setException(id){
-        console.log('设置例外[' + id +']');
-    }
     toggleApply(id){
         console.log('应用[' + id +']');
         for(let i = 0, len = this.table.data.length; i<len; i ++){

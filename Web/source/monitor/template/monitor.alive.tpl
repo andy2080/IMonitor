@@ -36,7 +36,6 @@
             <th>名称</th>
             <th>别名</th>
             <th>采集周期</th>
-            <th>监控策略(启用/禁用)</th>
             <th>操作</th>
         </tr>
         </thead>
@@ -45,9 +44,8 @@
             <td>PING</td>
             <td>存活监控</td>
             <td>{{data.period}}</td>
-            <td>{{data.policy}}</td>
             <td>
-                <button class="btn btn-sm btn-default" ng-click="AliveMonitorVm.addPolicy(data.id)">增加策略</button>
+                <button class="btn btn-sm btn-default" ng-click="AliveMonitorVm.addPolicy(data.id)">修改采集周期</button>
             </td>
         </tr>
         </tbody>

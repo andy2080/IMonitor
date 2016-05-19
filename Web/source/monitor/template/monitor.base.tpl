@@ -64,7 +64,6 @@
             <th>单位</th>
             <th>采集周期</th>
             <th>状态</th>
-            <th>监控策略</th>
             <th>操作</th>
         </tr>
         </thead>
@@ -76,7 +75,6 @@
             <td>{{data.unit}}</td>
             <td>{{data.period}}秒</td>
             <td>{{data.status}}</td>
-            <td>{{data.policy}}</td>
             <td>
                 <button class="btn btn-sm btn-default" ng-click="BaseMonitorVm.addPolicy(data.id)">添加策略</button>
             </td>

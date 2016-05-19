@@ -60,7 +60,6 @@
             <th>脚本运行账号</th>
             <th>脚本运行周期</th>
             <th>监控项状态</th>
-            <th>监控策略(开启/停用)</th>
             <th>操作</th>
         </tr>
         </thead>
@@ -73,11 +72,9 @@
             <td>
                 <button class="btn btn-sm btn-default" ng-click="CustomMonitorVm.toggleApply(data.id)">{{data.status == '1' ? '启用' : '取消' }}</button>
             </td>
-            <td>{{data.policy}}</td>
             <td>
                 <button class="btn btn-sm btn-default" ng-click="CustomMonitorVm.editMonitor(data.id)">编辑</button>
                 <button class="btn btn-sm btn-default" ng-click="CustomMonitorVm.deleteMonitor(data.id)">删除</button>
-                <button class="btn btn-sm btn-default" ng-click="CustomMonitorVm.addPolicy(data.id)">添加策略</button>
                 <button class="btn btn-sm btn-default" ng-click="CustomMonitorVm.downloadShell(data.id)">下载脚本</button>
             </td>
         </tr>

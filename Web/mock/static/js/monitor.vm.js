@@ -156,11 +156,6 @@ webpackJsonp([7],{
 	            });
 	        }
 	    }, {
-	        key: 'setException',
-	        value: function setException(id) {
-	            console.log('设置例外[' + id + ']');
-	        }
-	    }, {
 	        key: 'toggleApply',
 	        value: function toggleApply(id) {
 	            console.log('应用[' + id + ']');
