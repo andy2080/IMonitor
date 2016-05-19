@@ -5955,11 +5955,11 @@ button.close {
 /*# sourceMappingURL=bootstrap.css.map */
 
 @font-face {font-family: "iconfont";
-  src: url(static/fonts/iconfont.71e1d69fc37d542e7bca971faad7923a.eot); /* IE9*/
-  src: url(static/fonts/iconfont.71e1d69fc37d542e7bca971faad7923a.eot#iefix) format('embedded-opentype'), 
-  url(static/fonts/iconfont.87cd9e81ef71a1fa15be73ae072d31b4.woff) format('woff'), 
-  url(static/fonts/iconfont.87f0b8532021ec1add88446821efd3c4.ttf) format('truetype'), 
-  url(static/fonts/iconfont.63614aafe4728ed2e6069ee8c6160dd2.svg#iconfont) format('svg'); /* iOS 4.1- */
+  src: url(/static/fonts/iconfont.abb6953f709e551e0cf934d31bbead4c.eot); /* IE9*/
+  src: url(/static/fonts/iconfont.abb6953f709e551e0cf934d31bbead4c.eot#iefix) format('embedded-opentype'), 
+  url(/static/fonts/iconfont.ed65f2b4b7300cda27da443b8ab55621.woff) format('woff'), 
+  url(/static/fonts/iconfont.18d0fb5eea9fe647a4b0f7b0e7ba0ff6.ttf) format('truetype'), 
+  url(/static/fonts/iconfont.22a518c0a8e66eda9342d9f37913b092.svg#iconfont) format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {

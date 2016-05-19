@@ -96,7 +96,7 @@ module.exports = function (options) {
         },
         {
             test: /\.jpg$/,
-            loader: 'file?name=' + options.staticPath + '/img/[name].[hash].[ext]'
+            loader: 'url?name=' + options.staticPath + '/img/[name].[hash].[ext]'
         },
         {
             test: /\.(woff|woff2|ttf|eot|svg)(\?t=\d+)?$/,
