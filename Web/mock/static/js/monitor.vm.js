@@ -6,7 +6,7 @@ webpackJsonp([7],{
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _Monitor = __webpack_require__(50);
@@ -25,7 +25,9 @@ webpackJsonp([7],{
 
 	var _GetAlarmPolicyListFactory = __webpack_require__(59);
 
-	exports.default = angular.module('IMonitor.Monitor', ['ui.bootstrap']).controller('MonitorCtrl', _Monitor.MonitorController).controller('AlarmPolicyCtrl', _AlarmPolicy.AlarmPolicyController).controller('AliveMonitorCtrl', _AliveMonitor.AliveMonitorController).controller('BaseMonitorCtrl', _BaseMonitor.BaseMonitorController).controller('CustomMonitorCtrl', _CustomMonitor.CustomMonitorController).controller('HistoryMonitorCtrl', _HistoryMonitor.HistoryMonitorController).controller('LogMonitorCtrl', _LogMonitor.LogMonitorController).factory('getAlarmPolicyList', _GetAlarmPolicyListFactory.GetAlarmPolicyListFactory);
+	var _GetBaseMonitorListFactory = __webpack_require__(79);
+
+	exports.default = angular.module('IMonitor.Monitor', ['ui.bootstrap']).controller('MonitorCtrl', _Monitor.MonitorController).controller('AlarmPolicyCtrl', _AlarmPolicy.AlarmPolicyController).controller('AliveMonitorCtrl', _AliveMonitor.AliveMonitorController).controller('BaseMonitorCtrl', _BaseMonitor.BaseMonitorController).controller('CustomMonitorCtrl', _CustomMonitor.CustomMonitorController).controller('HistoryMonitorCtrl', _HistoryMonitor.HistoryMonitorController).controller('LogMonitorCtrl', _LogMonitor.LogMonitorController).factory('getAlarmPolicyList', _GetAlarmPolicyListFactory.GetAlarmPolicyListFactory).factory('getBaseMonitorList', _GetBaseMonitorListFactory.GetBaseMonitorListFactory);
 
 /***/ },
 
@@ -285,7 +287,7 @@ webpackJsonp([7],{
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -295,45 +297,30 @@ webpackJsonp([7],{
 	// 基础监控
 
 	var BaseMonitorController = exports.BaseMonitorController = function () {
-	    function BaseMonitorController($scope, $uibModal, $log) {
-	        _classCallCheck(this, BaseMonitorController);
+	  function BaseMonitorController($scope, $uibModal, $log, getBaseMonitorList) {
+	    var _this = this;
 
-	        var vm = this;
-	        vm.$scope = $scope;
-	        vm.$uibModal = $uibModal;
-	        vm.$log = $log;
-	        this.table = {
-	            data: [{
-	                id: '1',
-	                name: 'MEM_FREE',
-	                alias: '剩余物理内存',
-	                type: '常用基础项',
-	                unit: 'KB',
-	                period: '10',
-	                status: '无效',
-	                policy: '0/0'
-	            }, {
-	                id: '2',
-	                name: 'MEM_URATE',
-	                alias: '物理内存使用率',
-	                type: '常用基础项',
-	                unit: '百分率',
-	                period: '10',
-	                status: '正常',
-	                policy: '4/1'
-	            }]
-	        };
-	    }
+	    _classCallCheck(this, BaseMonitorController);
 
-	    _createClass(BaseMonitorController, [{
-	        key: 'addPolicy',
-	        value: function addPolicy(id) {}
-	    }]);
+	    var vm = this;
+	    vm.$scope = $scope;
+	    vm.$uibModal = $uibModal;
+	    vm.$log = $log;
+	    this.table = {};
+	    getBaseMonitorList().then(function (list) {
+	      return _this.table.data = list;
+	    });
+	  }
 
-	    return BaseMonitorController;
+	  _createClass(BaseMonitorController, [{
+	    key: 'addPolicy',
+	    value: function addPolicy(id) {}
+	  }]);
+
+	  return BaseMonitorController;
 	}();
 
-	BaseMonitorController.$inject = ['$scope', '$uibModal', '$log'];
+	BaseMonitorController.$inject = ['$scope', '$uibModal', '$log', 'getBaseMonitorList'];
 
 /***/ },
 
@@ -468,6 +455,33 @@ webpackJsonp([7],{
 	  };
 	}
 	GetAlarmPolicyListFactory.$inject = ['$http', '$q'];
+
+/***/ },
+
+/***/ 79:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.GetBaseMonitorListFactory = GetBaseMonitorListFactory;
+	function GetBaseMonitorListFactory($http, $q) {
+	  return function (reqData) {
+	    return $http({
+	      url: '/basemonitor/list',
+	      method: 'GET',
+	      data: reqData
+	    }).then(function (res) {
+	      var data = res.data;
+	      if (data.errno == 0) {
+	        return $q.resolve(data.data.list);
+	      }
+	    }).catch(function (err) {});
+	  };
+	}
+	GetBaseMonitorListFactory.$inject = ['$http', '$q'];
 
 /***/ }
 
