@@ -48,6 +48,7 @@ export default angular
   .factory('drawEthernetFlowChart', DrawEthernetFlowChartFactory)
   .factory('drawDiskSpaceChart', DrawDiskSpaceChartFactory)
   .factory('drawDiskIOChart', DrawDiskIOChartFactory)
+  // 用户信息
   .factory('addServerUser', AddServerUserFactory)
   .factory('editServerUser', EditServerUserFactory)
   .factory('getUsersList', GetUsersListFactory)

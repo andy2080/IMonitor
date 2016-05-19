@@ -1,5 +1,5 @@
 export class InfoController {
-    constructor() {
+  constructor() {
 
-    }
+  }
 }

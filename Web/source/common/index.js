@@ -5,11 +5,11 @@ import { HttpInterceptorFactory } from './service/HttpInterceptorFactory';
 import { GetServerInfoFactory } from './service/GetServerInfoFactory';
 
 export default angular
-    .module('IMonitor.Common', [])
-    .controller('RootCtrl', RootController)
-    .factory('getServerInfo', GetServerInfoFactory)
-    .factory('httpInterceptor', HttpInterceptorFactory)
-    .factory('polling', PollingFactory)
-    .config(['$httpProvider', function ($httpProvider) {
-        $httpProvider.interceptors.push('httpInterceptor');
-    }])
+  .module('IMonitor.Common', [])
+  .controller('RootCtrl', RootController)
+  .factory('getServerInfo', GetServerInfoFactory)
+  .factory('httpInterceptor', HttpInterceptorFactory)
+  .factory('polling', PollingFactory)
+  .config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.interceptors.push('httpInterceptor');
+  }])

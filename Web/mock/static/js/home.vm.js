@@ -6,7 +6,7 @@ webpackJsonp([2],{
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _home = __webpack_require__(15);
@@ -21,13 +21,13 @@ webpackJsonp([2],{
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var HomeController = exports.HomeController = function HomeController() {
-	    _classCallCheck(this, HomeController);
+	  _classCallCheck(this, HomeController);
 	};
 
 	HomeController.$inject = [];
