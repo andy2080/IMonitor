@@ -1,9 +1,4 @@
-# IMonitor前端
+# IMonitor
 
-## 选型
-Angular 1.5.0
-
-Webpack
-
-## 参考:
-> https://github.com/firehol/netdata Linux性能实时监测工具netdata
+## 前端
+Angular 1.5.0 + Webpack
