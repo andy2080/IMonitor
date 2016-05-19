@@ -2,7 +2,7 @@
 import pymongo
 import config
 
-class ProcMongo:
+class MonitorMongo:
 
     mongoClien = None
     db = None
@@ -30,7 +30,7 @@ class ProcMongo:
         '''
         # return self.db
         try:
-            res = self.db.proc.insert(data)
+            res = self.db.monitor_data.insert(data)
         except Exception as e:
             self.error = e
         return res
