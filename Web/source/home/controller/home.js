@@ -1,6 +1,6 @@
 export class HomeController {
-    constructor() {
+  constructor() {
 
-    }
+  }
 }
 HomeController.$inject = [];

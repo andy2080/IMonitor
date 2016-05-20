@@ -14,20 +14,26 @@ export default class extends Base {
   }
 
   listAction(){
-
     let data = Mock.mock({
-      'list|1-8': [{
+      'list|1-9': [{
         'id|+1': 1,
-        'policyName|2': '@first',
-        'alarmGroup|2': '@first',
-        'monitorItem|2': '@first',
-        'compare|1': ['>=100百分率', '>60秒', '>=66MB'],
-        'during|1-60': 1,
-        'maxAlarmTime|1-5': 1,
-        'isApply|1': [0, 1]
+        'loginName|1': '@name',
+        'cnName|1': '@cname',
+        'email|1': '@email',
+        'phone|1': '15530008080',
+        'status|1': ['正常', '异常'],
+        'limit|1': ['系统管理员', '普通管理员']
       }]
     })
 
     this.success(data)
+  }
+
+  addAction(){
+
+  }
+
+  editAction(){
+
   }
 }

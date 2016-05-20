@@ -1,5 +1,6 @@
 'use strict';
 
+import Mock from 'mockjs';
 import Base from './base.js';
 
 export default class extends Base {
@@ -13,17 +14,13 @@ export default class extends Base {
   }
 
   listAction(){
-    this.success({
-      "servers": [
-        {
-          "id": 1,
-          "name": "Server-1234"
-        },
-        {
-          "id": 2,
-          "name": "Server-2234"
-        }
-      ]
+    let data = Mock.mock({
+      'servers|1-6': [{
+          "id|+1": 1,
+          "name|1": "Server-@first"
+      }]
     })
+
+    this.success(data)
   }
 }

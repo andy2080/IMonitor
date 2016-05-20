@@ -1,5 +1,5 @@
 export class AuthorityInfoController{
-    constructor(){
+  constructor(){
 
-    }
+  }
 }
