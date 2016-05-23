@@ -106,7 +106,6 @@ class ProcessData(Base):
         for function in dict:
             if function not in self.exception:
                 target = function
-                print type(getattr(self, target))
                 t = threading.Thread(target=getattr(self, target))
                 t.start()
 

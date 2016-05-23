@@ -14,111 +14,59 @@ use Think\Model;
 class UsersModel extends Model {
 
     /**
-     * 获取单个用户
-     * @param array $where
-     * @param string $field
+     * 验证用户
+     * @param string $name 用户名
+     * @param string $pass 密码
+     * @return bool
      */
-    public function getSingleUser($where = array(), $field = '*') {
-        if (empty($where)) {
-            return false;
+    public function checkUser($name, $pass) {
+
+        if (empty($name) || empty($pass)) {
+            return -1;
         }
-        try {
-            $result = $this->where($where)->field($field)->find();
-        } catch (Exception $e) {
-            BaseController::log(__FILE__, __LINE__ - 2, DB_ERROR, $this->getDbError());
-            return false;
+        $res = $this->where(array('name' => $name))->find();
+        if ($res) {
+            if ($res['pass'] === $pass) {
+                session('id', $res['id']);
+                session('name', $res['name']);
+                session('group', $res['ugroup']);
+                return 1;
+            } else {
+                return -2;
+            }
+        } else {
+            return -2;
         }
-        if (!$result) {
-            return false;
-        }
-        return $result;
     }
 
     /**
-     * 更新用户信息
-     * @param array $where
-     * @param array $data
+     * 添加用户
+     * @param mixed|string $name
+     * @param string $pass
+     * @param string $group
+     * @return bool
      */
-    public function updateUser($where = array(), $data = array()) {
+    public function addUser($name, $pass, $group) {
 
-        if (empty($where) || empty($data)) {
-            return false;
+        if (empty($name) || empty($pass) || empty($group)) {
+            return -1;
         }
-
-        try {
-            $result = $this->where($where)->data($data)->save();
-        } catch (Exception $e) {
-            BaseController::log(__FILE__, __LINE__ - 2, DB_ERROR, $this->getDbError());
-            return false;
+        $data = array(
+            'name' => $name,
+            'pass' => $pass,
+            'ugroup' => $group,
+            'status' => 1,
+            'time' => time(),
+        );
+        $res = $this->where(array('name' => $name))->find();
+        if ($res) { // 用户名已存在
+            return -2;
         }
-        return $result;
-    }
-
-    /**
-     * 获取用户列表
-     * @param array $where 查询条件
-     * @param string $fields 过滤条件
-     * @param string $order 排序条件
-     * @param int $page 页码
-     * @param int $limit 每页数量
-     */
-    public function getUserList($where = array(), $fields = '*', $order = 'id DESC', $page = 1, $limit = 10) {
-
-        if ($page < 0) {
-            $page = 1;
+        $res = $this->data($data)->add();
+        if ($res) {
+            return 1;
+        } else {
+            return -3;
         }
-        $start = ($page - 1) * $limit;
-        $end = $start + $limit;
-        try {
-            $result = $this->field($fields)->where($where)->order($order)->limit($start, $end)->select();
-        } catch (Exception $e) {
-            return false;
-        }
-
-        if (!$result) {
-            BaseController::log(__FILE__, __LINE__ - 6, DB_INFO, $this->_sql());
-            return false;
-        }
-        return $result;
-    }
-
-    /**
-     * 获取用户数
-     * @param array $where
-     */
-    public function getUserCount($where = array()) {
-
-        if (empty($where)) {
-            $where = 1;
-        }
-        try {
-            $result = $this->where($where)->count("id");
-        } catch (Exception $e) {
-            BaseController::log(__FILE__, __LINE__ - 2, DB_ERROR, $this->getDbError());
-            return false;
-        }
-        return $result;
-    }
-
-    /**
-     * 新增一个用户
-     * @param $data
-     */
-    public function addUser($data) {
-        if (empty($data)) {
-            return false;
-        }
-
-        try {
-            $result = $this->add($data);
-        } catch (Exception $e) {
-            BaseController::log(__FILE__, __LINE__ - 2, DB_ERROR, $this->getDbError());
-            return false;
-        }
-
-        if (!$result) {
-            return false;
-        }
-        return $result;
     }
 }

@@ -34,11 +34,3 @@ class MonitorMongo:
         except Exception as e:
             self.error = e
         return res
-
-# mongo = ProcMongo('monitor')
-# print mongo
-# print mongo.db
-# try:
-#     a = mongo.save('asdf')
-# except Exception as e:
-#     print e

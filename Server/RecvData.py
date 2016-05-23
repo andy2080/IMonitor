@@ -39,7 +39,6 @@ while True:
             sockfd, addr = server.accept()
             connectList.append(sockfd)
             # print "Client (%s, %s) connected" % addr
-            # TODO:此处加上客户端上线
         else:
             try:
                 data = sock.recv(config.RECV_BUFFER)
