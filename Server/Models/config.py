@@ -1,9 +1,10 @@
 # -*- coding:utf-8 -*-
 # Mysql 数据库配置
 MYSQL_HOST = '127.0.0.1'
-MYSQL_DB   = 'IMonitor'
+MYSQL_PORT = 3306
+MYSQL_DB   = 'imonitor'
 MYSQL_USER = 'root'
-MYSQL_PASS = '123456'
+MYSQL_PASS = ''
 
 # Mongo 数据库配置
 MONGO_HOST = '127.0.0.1'
