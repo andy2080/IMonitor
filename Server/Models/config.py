@@ -4,7 +4,7 @@ MYSQL_HOST = '127.0.0.1'
 MYSQL_PORT = 3306
 MYSQL_DB   = 'imonitor'
 MYSQL_USER = 'root'
-MYSQL_PASS = ''
+MYSQL_PASS = '123456'
 
 # Mongo 数据库配置
 MONGO_HOST = '127.0.0.1'

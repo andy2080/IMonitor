@@ -57,4 +57,6 @@ class GetMonitorData:
         for i in data:
             j += 1
             sum += float(i['value'])
+        if j == 0:
+            return 0
         return sum / j

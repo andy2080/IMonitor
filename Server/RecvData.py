@@ -44,6 +44,7 @@ while True:
                 data = sock.recv(config.RECV_BUFFER)
                 if data:
                     data = json.loads(data)
+                    print data
                     (ip, port) = sock.getpeername()
                     # 先把服务器加入到数据库中
                     sql = "SELECT * FROM `server` WHERE host = '" + ip + "' limit 1"
