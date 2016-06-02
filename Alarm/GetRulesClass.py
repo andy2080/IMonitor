@@ -49,7 +49,7 @@ class GetRules:
         :param limit: 每页条数
         :return:
         '''
-        start = (page - 1) * limit;
+        start = (page - 1) * limit
         end = start + limit
         return self.db.rules.find({'name':name}).skip(start).limit(end)
 

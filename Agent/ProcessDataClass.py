@@ -101,7 +101,6 @@ class ProcessData(Base):
             send.sendData(data)
 
     def start(self):
-        strs = []
         dict = self.__class__.__dict__
         for function in dict:
             if function not in self.exception:

@@ -9,6 +9,7 @@ import time
 import Queue
 import threading
 if __name__ == '__main__':
+    print "正在连接服务端并向服务端发送数据======>"
     process = ProcessData(globalValue.QUEUE)
     process.start()
     # th = threading.Thread(target=process.get)

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import config, smtplib
+import config, smtplib, time
 from email import encoders
 from email.header import Header
 from email.mime.text import MIMEText
@@ -33,6 +33,5 @@ class Mail:
         msg['To'] = self._format_addr(toAddr)
         msg['Subject'] = Header(subject, 'utf-8').encode()
         self.server.sendmail(self.fromAddr, toAddr, msg.as_string())
-        self.server.quit()
-
+        time.sleep(5)
 
